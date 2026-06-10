@@ -1,4 +1,4 @@
-package it.unicam.controller;
+package it.unicam.controller.checker;
 
 import it.unicam.model.entity.BasicTurnGame;
 
