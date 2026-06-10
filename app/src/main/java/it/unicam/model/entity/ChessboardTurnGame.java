@@ -1,5 +1,8 @@
 package it.unicam.model.entity;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class ChessboardTurnGame extends BasicTurnGame {
 
     private Chessboard chessboard;
@@ -13,5 +16,9 @@ public class ChessboardTurnGame extends BasicTurnGame {
 
     public Chessboard getChessboard() {
         return chessboard;
+    }
+
+    public List<Piece> getPiecesOfPlayer(PlayerColor color){
+        return Arrays.asList(chessboard.getPieces()).stream().filter(x -> x.getColor() == color).toList();
     }
 }

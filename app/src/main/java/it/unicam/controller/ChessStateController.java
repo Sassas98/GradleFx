@@ -1,8 +1,5 @@
 package it.unicam.controller;
 
-import java.util.Arrays;
-import java.util.stream.Stream;
-
 import it.unicam.controller.checker.CheckerDecorator;
 import it.unicam.controller.util.ChessBoardSearcher;
 import it.unicam.controller.util.ChessboardNavigator;
@@ -22,19 +19,25 @@ public class ChessStateController extends ChessBoardSearcher implements StateTur
 
     @Override
     public GameState getGameState(ChessboardTurnGame g) {
-        Stream<Piece> kings = Arrays.asList(g.getChessboard().getPieces()).stream()
-            .filter(x -> x.getType() == PieceType.KING);
-        Piece kb = kings.filter(x -> x.getColor() == PlayerColor.BLACK).findFirst().get();
-        Piece kw = kings.filter(x -> x.getColor() == PlayerColor.WHITE).findFirst().get();
-        if((isUnderAttack(kw, g) && !canMoveSomething(PlayerColor.WHITE, g)) ||
-           (isUnderAttack(kb, g) && !canMoveSomething(PlayerColor.BLACK, g))){
+        Piece kb = getKing(PlayerColor.BLACK, g);
+        Piece kw = getKing(PlayerColor.WHITE, g);
+        boolean whiteCanMove = canMoveSomething(PlayerColor.WHITE, g);
+        boolean blackCanMove = canMoveSomething(PlayerColor.BLACK, g);
+        if((isUnderAttack(kw, g) && !whiteCanMove) ||
+           (isUnderAttack(kb, g) && !blackCanMove))
             return GameState.WINNER;
-        }else{
-            if(!canMoveSomething(PlayerColor.BLACK, g) 
-                || !canMoveSomething(PlayerColor.WHITE, g) )
+        if(!blackCanMove || !whiteCanMove)
             return GameState.PAIR;
-        }
         return GameState.RUNNING;
+    }
+
+    @Override
+    public PlayerColor getWinnerNumber(ChessboardTurnGame g) {
+        if(getGameState(g) != GameState.WINNER) 
+            return null;
+        Piece kb = getKing(PlayerColor.BLACK, g);
+        return isUnderAttack(kb, g) && !canMoveSomething(PlayerColor.BLACK, g) ? 
+            PlayerColor.WHITE : PlayerColor.BLACK;
     }
 
     private boolean isUnderAttack(Piece king, ChessboardTurnGame g){
@@ -43,21 +46,13 @@ public class ChessStateController extends ChessBoardSearcher implements StateTur
 
     private boolean canMoveSomething(PlayerColor pc, ChessboardTurnGame g){
         ChessboardNavigator navigator = new ChessboardNavigator(checker);
-        return Arrays.asList(g.getChessboard().getPieces()).stream()
-            .filter(x -> x.getColor() == pc)
-            .anyMatch(x -> !navigator.getLegalMoves(x, g).isEmpty());
+        return g.getPiecesOfPlayer(pc).stream()
+                .anyMatch(x -> !navigator.getLegalMoves(x, g).isEmpty());
     }
 
-    @Override
-    public PlayerColor getWinnerNumber(ChessboardTurnGame g) {
-        if(getGameState(g) != GameState.WINNER) 
-            return null;
-        Piece kb = Arrays.asList(g.getChessboard().getPieces()).stream()
-            .filter(x -> x.getType() == PieceType.KING && x.getColor() == PlayerColor.BLACK).findFirst().get();
-        return isUnderAttack(kb, g) && !canMoveSomething(PlayerColor.BLACK, g) ? 
-            PlayerColor.BLACK : PlayerColor.WHITE;
+    private Piece getKing(PlayerColor pc, ChessboardTurnGame g){
+        return g.getPiecesOfPlayer(pc).stream()
+            .filter(x -> x.getType() == PieceType.KING).findFirst().get();
     }
-
-
 
 }
