@@ -1,0 +1,6 @@
+<VBox styleClass="login-box" spacing="10">
+    <Label styleClass="page-title" text="Login"/>
+    <TextField styleClass="input" promptText="Username"/>
+    <PasswordField styleClass="input" promptText="Password"/>
+    <Button styleClass="login-button" text="Accedi"/>
+</VBox>

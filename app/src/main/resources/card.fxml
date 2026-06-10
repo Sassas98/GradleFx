@@ -1,0 +1,5 @@
+<VBox styleClass="card" spacing="8" alignment="CENTER">
+    <Label styleClass="title" text="Mario Rossi"/>
+    <Label styleClass="subtitle" text="Studente JavaFX"/>
+    <Button styleClass="primary-button" text="Segui"/>
+</VBox>
