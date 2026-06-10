@@ -5,4 +5,5 @@ public interface Piece {
     public void setPosion(int[] position);
     public PlayerColor getColor();
     public PieceType getType();
+    public void setType(PieceType type);
 }

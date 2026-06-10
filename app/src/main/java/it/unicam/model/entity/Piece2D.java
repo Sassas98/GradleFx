@@ -19,7 +19,7 @@ public class Piece2D implements Piece, Serializable {
         this.type = type;
     }
     public int[] getPosion() {
-        return position;
+        return new int[]{position[0], position[1]};
     }
     public PlayerColor getColor() {
         return color;
@@ -39,5 +39,10 @@ public class Piece2D implements Piece, Serializable {
         if(position == null || position.length != 2)
             throw new IllegalArgumentException("Posizione non conforme alla logica 2D");
         this.position = position;
+    }
+
+    @Override
+    public void setType(PieceType type) {
+        this.type = type;
     }
 }

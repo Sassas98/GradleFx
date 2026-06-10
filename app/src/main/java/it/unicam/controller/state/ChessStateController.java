@@ -9,7 +9,7 @@ import it.unicam.model.entity.Piece;
 import it.unicam.model.entity.PieceType;
 import it.unicam.model.entity.PlayerColor;
 
-public class ChessStateController extends ChessBoardSearcher implements StateTurnGameController<ChessboardTurnGame>{
+public class ChessStateController implements StateTurnGameController<ChessboardTurnGame>{
 
     private final CheckerDecorator<ChessboardTurnGame> checker;
 
@@ -19,24 +19,18 @@ public class ChessStateController extends ChessBoardSearcher implements StateTur
 
     @Override
     public GameState getGameState(ChessboardTurnGame g) {
-        Piece kb = getKing(PlayerColor.BLACK, g);
-        Piece kw = getKing(PlayerColor.WHITE, g);
-        boolean whiteCanMove = canMoveSomething(PlayerColor.WHITE, g);
-        boolean blackCanMove = canMoveSomething(PlayerColor.BLACK, g);
-        if((isUnderAttack(kw, g) && !whiteCanMove) ||
-           (isUnderAttack(kb, g) && !blackCanMove))
+        PlayerColor color = g.getCurrentPlayer();
+        Piece k = getKing(color, g);
+        boolean canMove = canMoveSomething(color, g);
+        if((isUnderAttack(k, g) && !canMove))
             return GameState.WINNER;
-        if(!blackCanMove || !whiteCanMove)
-            return GameState.PAIR;
-        return GameState.RUNNING;
+        return canMove ? GameState.RUNNING : GameState.PAIR;
     }
 
     @Override
     public PlayerColor getWinnerPlayer(ChessboardTurnGame g) {
-        if(getGameState(g) != GameState.WINNER) 
-            return null;
-        Piece kb = getKing(PlayerColor.BLACK, g);
-        return isUnderAttack(kb, g) && !canMoveSomething(PlayerColor.BLACK, g) ? 
+        return getGameState(g) != GameState.WINNER ? null :
+            g.getCurrentPlayer() == PlayerColor.BLACK ?
             PlayerColor.WHITE : PlayerColor.BLACK;
     }
 

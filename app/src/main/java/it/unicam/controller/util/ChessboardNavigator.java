@@ -7,7 +7,7 @@ import it.unicam.controller.checker.CheckerDecorator;
 import it.unicam.model.entity.ChessboardTurnGame;
 import it.unicam.model.entity.Piece;
 
-public final class ChessboardNavigator extends ChessBoardSearcher {
+public final class ChessboardNavigator implements ChessBoardSearcher {
 
     private final CheckerDecorator<ChessboardTurnGame> checker;
 
