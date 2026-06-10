@@ -1,5 +1,5 @@
 package it.unicam.model.entity;
 
 public enum PieceType {
-    KING, QUEEN, HORSE, TOWER, PAWN, BISHOP
+    KING, QUEEN, KNIGHT, ROOK, PAWN, BISHOP
 }

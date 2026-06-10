@@ -9,8 +9,8 @@ public class ChessboardTurnGame extends BasicTurnGame {
 
     public ChessboardTurnGame(){}
 
-    public ChessboardTurnGame(GameState state, int playerNumber, int currentPlayer, int winnerPlayer, Chessboard chessboard) {
-        super(state, playerNumber, currentPlayer, winnerPlayer);
+    public ChessboardTurnGame(GameState state, int playerNumber, PlayerColor currentPlayer, Chessboard chessboard) {
+        super(state, playerNumber, currentPlayer);
         this.chessboard = chessboard;
     }
 

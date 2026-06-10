@@ -1,4 +1,4 @@
-package it.unicam.controller;
+package it.unicam.controller.state;
 
 import it.unicam.controller.checker.CheckerDecorator;
 import it.unicam.controller.util.ChessBoardSearcher;
@@ -32,7 +32,7 @@ public class ChessStateController extends ChessBoardSearcher implements StateTur
     }
 
     @Override
-    public PlayerColor getWinnerNumber(ChessboardTurnGame g) {
+    public PlayerColor getWinnerPlayer(ChessboardTurnGame g) {
         if(getGameState(g) != GameState.WINNER) 
             return null;
         Piece kb = getKing(PlayerColor.BLACK, g);

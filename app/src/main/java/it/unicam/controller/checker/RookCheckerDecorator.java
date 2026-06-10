@@ -1,16 +1,16 @@
-package it.unicam.controller;
+package it.unicam.controller.checker;
 
 import it.unicam.model.entity.ChessboardTurnGame;
 import it.unicam.model.entity.Piece;
 import it.unicam.model.entity.PieceType;
 
-public class TowerCheckerDecorator extends CheckerDecorator<ChessboardTurnGame> {
+public class RookCheckerDecorator extends CheckerDecorator<ChessboardTurnGame> {
 
     @Override
     public boolean check(ChessboardTurnGame c, int[] in, int[] out) {
         Piece piece = c.getChessboard().getPiece(in);
         if(piece == null) return false;
-        if(piece.getType() == PieceType.TOWER){
+        if(piece.getType() == PieceType.ROOK){
             return check(c, out, piece);
         }
         return checkNext(c, in, out);

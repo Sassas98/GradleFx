@@ -33,4 +33,11 @@ public class Piece2D implements Piece, Serializable {
         dto.type();
         return dto;
     }
+
+    @Override
+    public void setPosion(int[] position) {
+        if(position == null || position.length != 2)
+            throw new IllegalArgumentException("Posizione non conforme alla logica 2D");
+        this.position = position;
+    }
 }

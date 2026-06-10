@@ -1,10 +1,10 @@
-package it.unicam.controller;
+package it.unicam.controller.checker;
 
 import it.unicam.model.entity.ChessboardTurnGame;
 
 public class ChessMoveChecker extends CheckerDecorator<ChessboardTurnGame> {
     
-    private CheckerDecorator<ChessboardTurnGame> checker;
+    private final CheckerDecorator<ChessboardTurnGame> checker;
 
     public ChessMoveChecker(){
         checker = new TowerCheckerDecorator();
@@ -12,6 +12,6 @@ public class ChessMoveChecker extends CheckerDecorator<ChessboardTurnGame> {
 
     @Override
     public boolean check(ChessboardTurnGame c, int[] in, int[] out) {
-        return check(c, in, out);
+        return checker.check(c, in, out);
     }
 }

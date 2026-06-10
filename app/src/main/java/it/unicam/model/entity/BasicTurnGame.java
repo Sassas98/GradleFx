@@ -1,18 +1,20 @@
 package it.unicam.model.entity;
 
-public class BasicTurnGame {
+import java.io.Serializable;
+
+public class BasicTurnGame implements Serializable {
     private GameState state;
     private int playerNumber;
-    private int currentPlayer;
-    private int winerPlayer;
+    private PlayerColor currentPlayer;
+    private PlayerColor winnerPlayer;
 
     public BasicTurnGame(){}
 
-    public BasicTurnGame(GameState state, int playerNumber, int currentPlayer, int winerPlayer) {
+    public BasicTurnGame(GameState state, int playerNumber, PlayerColor currentPlayer) {
         this.state = state;
         this.playerNumber = playerNumber;
         this.currentPlayer = currentPlayer;
-        this.winerPlayer = winerPlayer;
+        this.winnerPlayer = null;
     }
 
     public GameState getState() {
@@ -23,12 +25,24 @@ public class BasicTurnGame {
         return playerNumber;
     }
 
-    public int getCurrentPlayer() {
+    public PlayerColor getCurrentPlayer() {
         return currentPlayer;
     }
 
-    public int getWinerPlayer() {
-        return winerPlayer;
+    public PlayerColor getWinnerPlayer() {
+        return winnerPlayer;
+    }
+
+    public void setState(GameState state) {
+        this.state = state;
+    }
+
+    public void setCurrentPlayer(PlayerColor currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    public void setWinnerPlayer(PlayerColor winnerPlayer) {
+        this.winnerPlayer = winnerPlayer;
     }
     
 }
