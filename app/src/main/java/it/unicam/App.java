@@ -11,7 +11,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        URL url = App.class.getResource("/card.fxml");
+        URL url = App.class.getResource("/login.fxml");
         FXMLLoader loader = new FXMLLoader(url);
         Scene scene = new Scene(loader.load(), 1050, 700);
         scene.getStylesheets().add(App.class.getResource("/style.css").toExternalForm());
