@@ -1,16 +1,20 @@
 package it.unicam;
 
+import java.net.URL;
+
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Pane root = new Pane();
-        Scene scene = new Scene(root, 1050, 700);
+        URL url = App.class.getResource("/card.fxml");
+        FXMLLoader loader = new FXMLLoader(url);
+        Scene scene = new Scene(loader.load(), 1050, 700);
+        scene.getStylesheets().add(App.class.getResource("/style.css").toExternalForm());
         stage.setTitle("FX Base");
         stage.setMinWidth(900);
         stage.setMinHeight(600);

@@ -1,0 +1,22 @@
+.input{
+    -fx-font-size: 40; 
+    -fx-text-fill: #223765;
+}
+
+.box{
+    -fx-background-radius: 10; 
+    -fx-background-color: rgb(181, 169, 169);
+}
+.box:hover{
+    -fx-background-color: rgb(217, 207, 207);
+    -fx-scale-x: 0.9;
+    -fx-scale-y: 0.9;
+    -fx-cursor: hand;
+}
+.box:pressed{
+    -fx-background-color: rgb(168, 159, 159);
+    -fx-scale-x: 0.9;
+    -fx-scale-y: 0.9;
+    -fx-cursor: hand;
+}
+
