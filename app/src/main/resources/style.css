@@ -20,3 +20,23 @@
     -fx-cursor: hand;
 }
 
+.card{
+    -fx-background-color: rgb(213, 215, 224);
+}
+
+.title{
+    -fx-font-size: 30;
+}
+
+.subtitle{
+    -fx-font-size: 20;
+}
+
+.primary-button{
+    -fx-padding: 15 40 15 40;
+    -fx-background-color: #4538da;
+    -fx-text-fill: white;
+}
+.primary-button:hover{
+    -fx-background-color: #5b50d8;
+}
