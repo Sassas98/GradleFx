@@ -34,7 +34,7 @@ public class Chessboard implements Serializable {
 
 
     public void makeMove(int[] in, int[] out){
-        if(in == null || out == null || in.length != out.length || in.length == pieces.get(0).getPosion().length)
+        if(in == null || out == null || in.length != out.length || in.length != pieces.get(0).getPosion().length)
             return;
         Piece p = getPiece(in);
         if(p == null)

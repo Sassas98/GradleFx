@@ -1,7 +1,5 @@
 package it.unicam.controller;
 
-import java.util.List;
-
 import it.unicam.controller.checker.CheckerDecorator;
 import it.unicam.controller.checker.ChessMoveChecker;
 import it.unicam.controller.npc.ChessEasyNPC;

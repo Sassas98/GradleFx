@@ -35,23 +35,24 @@ public class ChessBoardFactorySingleton {
 
     private static void pawnGenerator(List<Piece2D> pieces){
         for(int i = 0; i < 8; i++){
-            pieces.add(new Piece2D(new int[]{1, i}, PlayerColor.WHITE, PieceType.PAWN));
-            pieces.add(new Piece2D(new int[]{6, i}, PlayerColor.BLACK, PieceType.PAWN));
+            pieces.add(new Piece2D(new int[]{i, 1}, PlayerColor.WHITE, PieceType.PAWN));
+            pieces.add(new Piece2D(new int[]{i, 6}, PlayerColor.BLACK, PieceType.PAWN));
         }
     }
 
     private static void otherPiecesGenerator(List<Piece2D> pieces){
-        for(int i = 0; i < 8; i++){
-            PlayerColor color = i < 4 ? PlayerColor.WHITE : PlayerColor.BLACK;
-            int row = i < 4 ? 0 : 7;
-            PieceType type = switch (i % 4) {
-                case 0 -> PieceType.ROOK;
-                case 1 -> PieceType.KNIGHT;
-                case 2 -> PieceType.BISHOP;
+        for(int i = 0; i < 16; i++){
+            PlayerColor color = i < 8 ? PlayerColor.WHITE : PlayerColor.BLACK;
+            int row = i < 8 ? 0 : 7;
+            PieceType type = switch (i % 8) {
+                case 0, 7 -> PieceType.ROOK;
+                case 1, 6 -> PieceType.KNIGHT;
+                case 2, 5 -> PieceType.BISHOP;
                 case 3 -> PieceType.QUEEN;
-                default -> throw new IllegalStateException("Unexpected value: " + (i % 4));
+                case 4 -> PieceType.KING;
+                default -> throw new IllegalStateException("Unexpected value: " + (i % 8));
             };
-            pieces.add(new Piece2D(new int[]{row, i % 4}, color, type));
+            pieces.add(new Piece2D(new int[]{i % 8, row}, color, type));
         }
     }
 }
